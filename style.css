@@ -1,0 +1,137 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #263238;
+    margin: 0;
+}
+.navbar {
+    background: linear-gradient(90deg, #0878d1, #20b88a);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffeb3b !important;
+    transform: translateY(-3px);
+}
+.hero {
+    background: linear-gradient(120deg, #0878d1, #20b88a);
+    color: white;
+    padding: 90px 20px;
+    text-align: center;
+    border-radius: 0 0 50px 50px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero h1 {
+    font-size: 42px;
+    animation: slideDown 1s ease;
+}
+
+.hero p {
+    font-size: 18px;
+    animation: fadeIn 2s ease;
+}
+.btn {
+    background-color: #ffb703;
+    color: #222;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #fb8500;
+    color: white;
+    transform: scale(1.08);
+}
+.card {
+    background-color: white;
+    border: none;
+    border-radius: 18px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    animation: fadeIn 1.5s ease;
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 10px 25px rgba(0,120,200,0.25);
+}
+.card h3 {
+    color: #0878d1;
+}
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    animation: slideUp 1s ease;
+}
+
+input, select {
+    border-radius: 8px !important;
+    padding: 10px !important;
+}
+h2 {
+    color: #0878d1;
+    font-weight: bold;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+footer {
+    background: #075985;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 40px;
+}
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero {
+        padding: 60px 15px;
+    }
+}

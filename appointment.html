@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MediConnect Appointment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eaf5ff;
+    color: #263238;
+}
+nav {
+    background: linear-gradient(90deg, #0878d1, #20b88a);
+    padding: 18px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+nav h2 {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 8px;
+}
+.hero {
+    text-align: center;
+    padding: 55px 15px;
+    color: white;
+    background: linear-gradient(120deg, #0878d1, #20b88a);
+    border-radius: 0 0 45px 45px;
+    animation: fadeIn 1s;
+}
+.hero h1 {
+    font-size: 38px;
+    animation: slideDown 1s;
+}
+.container {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 15px;
+}
+
+.booking-box {
+    background: white;
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 5px 25px #00000015;
+    animation: slideUp 1s;
+}
+
+h2 {
+    color: #0878d1;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 16px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 13px;
+    margin-top: 7px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border: 2px solid #20b88a;
+    box-shadow: 0 0 7px #20b88a55;
+}
+.book-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+    background: linear-gradient(90deg, #0878d1, #20b88a);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.book-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 5px 15px #0878d155;
+}
+.features {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex: 1;
+    min-width: 180px;
+    background: #e4f7f0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-7px);
+    background: #d1f2e5;
+}
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0009;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    z-index: 10;
+}
+.popup-box {
+    background: white;
+    padding: 30px;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 25px;
+    text-align: center;
+    animation: zoomIn 0.5s;
+}
+.check {
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    border-radius: 50%;
+    background: #20b88a;
+    color: white;
+    font-size: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 0.7s;
+}
+
+.details {
+    background: #eaf5ff;
+    text-align: left;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 20px 0;
+    overflow-wrap: anywhere;
+}
+
+.close-btn {
+    background: #0878d1;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+footer {
+    background: #075985;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 40px;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@media(max-width: 600px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .booking-box {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+<nav>
+    <h2>MediConnect</h2>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="hospitals.html">Hospitals</a>
+        <a href="doctors.html">Doctors</a>
+        <a href="appointment.html">Appointment</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>📅 Book Your Appointment</h1>
+    <p>Your Health, Our Priority!</p>
+    <p>Connect with doctors and request appointments easily.</p>
+</div>
+<div class="container">
+
+    <div class="booking-box">
+
+        <h2> Patient Appointment Form</h2>
+
+        <p style="text-align:center;color:#777">
+            Please enter your details below.
+        </p>
+
+        <form id="appointmentForm">
+
+            <label>Patient Full Name</label>
+            <input type="text" id="name"
+            placeholder="Enter your full name" required>
+
+            <label>Mobile Number</label>
+            <input type="tel" id="mobile"
+            placeholder="Enter 10 digit mobile number"
+            pattern="[0-9]{10}" maxlength="10" required>
+
+            <label>Email Address</label>
+            <input type="email" id="email"
+            placeholder="Enter your email">
+
+            <label>Age</label>
+            <input type="number" id="age"
+            min="1" max="120"
+            placeholder="Enter your age" required>
+
+            <label>Gender</label>
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+                <option>Prefer not to say</option>
+            </select>
+
+            <label>Select Doctor</label>
+            <select id="doctor" required>
+                <option value="">Choose Your Doctor</option>
+                <option>Dr. Amit Sharma - General Physician</option>
+                <option>Dr. Priya Verma - Cardiologist</option>
+                <option>Dr. Rahul Patil - Dentist</option>
+                <option>Dr. Neha Kulkarni - Dermatologist</option>
+                <option>Dr. Suresh Gupta - Orthopedic</option>
+                <option>Dr. Sneha Joshi - Pediatrician</option>
+                <option>Dr. Karan Deshmukh - Neurologist</option>
+                <option>Dr. Pooja Mishra - Gynecologist</option>
+                <option>Dr. Rohan Mehta - ENT Specialist</option>
+                <option>Dr. Anjali Rao - Ophthalmologist</option>
+            </select>
+
+            <label>Appointment Date</label>
+            <input type="date" id="date" required>
+
+            <label>Preferred Time</label>
+            <select id="time" required>
+                <option value="">Select Time</option>
+                <option>09:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>02:00 PM</option>
+                <option>03:00 PM</option>
+                <option>04:00 PM</option>
+                <option>05:00 PM</option>
+            </select>
+
+            <label>Describe Your Problem (Optional)</label>
+            <textarea id="problem" rows="3"
+            placeholder="Write your health concern"></textarea>
+
+            <button type="submit" class="book-btn">
+                Book Appointment 🚀
+            </button>
+
+        </form>
+        <div class="features">
+
+            <div class="feature">
+                <h2>👨‍⚕️</h2>
+                <h3>Expert Doctors</h3>
+                <p>Choose from 10 sample doctor profiles.</p>
+            </div>
+
+            <div class="feature">
+                <h2>📅</h2>
+                <h3>Easy Booking</h3>
+                <p>Request your appointment easily.</p>
+            </div>
+
+            <div class="feature">
+                <h2>💙</h2>
+                <h3>Patient Care</h3>
+                <p>Healthcare information in one place.</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="popup" id="successPopup">
+
+    <div class="popup-box">
+
+        <div class="check">✓</div>
+
+        <h2 style="color:#20a67a">
+            Appointment Successful!
+        </h2>
+
+        <p>Your appointment request has been submitted.</p>
+
+        <div class="details">
+
+            <p><b>Booking ID:</b>
+            <span id="bookingId"></span></p>
+
+            <p><b>Patient:</b>
+            <span id="showName"></span></p>
+
+            <p><b>Doctor:</b>
+            <span id="showDoctor"></span></p>
+
+            <p><b>Date:</b>
+            <span id="showDate"></span></p>
+
+            <p><b>Time:</b>
+            <span id="showTime"></span></p>
+
+            <p><b>Status:</b> Pending Confirmation</p>
+
+        </div>
+
+        <p>Thank you for choosing MediConnect! 💙</p>
+
+        <button class="close-btn" onclick="closePopup()">
+            Done
+        </button>
+
+    </div>
+</div>
+<footer>
+    <p>© 2026 MediConnect | Healthcare for Everyone</p>
+</footer>
+
+<script>
+let today = new Date();
+let localDate = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+document.getElementById("date").min = localDate;
+document.getElementById("appointmentForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let mobile = document.getElementById("mobile").value;
+    let doctor = document.getElementById("doctor").value;
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+
+    if (!/^[0-9]{10}$/.test(mobile)) {
+        alert("Please enter a valid 10 digit mobile number.");
+        return;
+    }
+
+    let bookingId = "MC" + Date.now().toString().slice(-6);
+
+    let appointment = {
+        id: bookingId,
+        name: name,
+        mobile: mobile,
+        email: document.getElementById("email").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value,
+        doctor: doctor,
+        date: date,
+        time: time,
+        problem: document.getElementById("problem").value,
+        status: "Pending"
+    };
+
+    let appointments =
+        JSON.parse(localStorage.getItem("appointments")) || [];
+
+    appointments.push(appointment);
+
+    localStorage.setItem(
+        "appointments",
+        JSON.stringify(appointments)
+    );
+    document.getElementById("bookingId").textContent = bookingId;
+    document.getElementById("showName").textContent = name;
+    document.getElementById("showDoctor").textContent = doctor;
+    document.getElementById("showDate").textContent = date;
+    document.getElementById("showTime").textContent = time;
+
+    document.getElementById("successPopup").style.display = "flex";
+
+    document.getElementById("appointmentForm").reset();
+
+});
+function closePopup() {
+    document.getElementById("successPopup").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

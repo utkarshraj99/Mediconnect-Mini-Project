@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MediConnect - Find Hospitals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eff7ff;
+    color: #263238;
+}
+nav {
+    background: linear-gradient(90deg, #0878d1, #20b88a);
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav h2 {
+    color: white;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 8px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: yellow;
+}
+.hero {
+    background: linear-gradient(120deg, #0878d1, #20b88a);
+    color: white;
+    text-align: center;
+    padding: 55px 15px;
+    border-radius: 0 0 40px 40px;
+    animation: fadeIn 1s;
+}
+
+.hero h1 {
+    font-size: 36px;
+    animation: slideDown 1s;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 15px;
+}
+
+.search-box {
+    background: white;
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 5px 20px #00000015;
+    animation: slideUp 1s;
+}
+
+.search-box h2 {
+    text-align: center;
+    color: #0878d1;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 18px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border: 2px solid #20b88a;
+}
+.search-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 25px;
+    background: linear-gradient(90deg, #0878d1, #20b88a);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    transform: scale(1.03);
+}
+.results {
+    margin-top: 35px;
+}
+
+.hospital-card {
+    background: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px #00000012;
+    transition: 0.3s;
+    animation: slideUp 0.6s;
+    border-left: 6px solid #20b88a;
+}
+
+.hospital-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 8px 20px #0878d133;
+}
+
+.hospital-card h3 {
+    color: #0878d1;
+}
+
+.hospital-card p {
+    line-height: 1.6;
+}
+
+.tag {
+    display: inline-block;
+    background: #dff7ed;
+    color: #087443;
+    padding: 6px 10px;
+    border-radius: 15px;
+    margin: 4px;
+    font-size: 13px;
+}
+
+.book-btn {
+    display: inline-block;
+    background: #0878d1;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 22px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.book-btn:hover {
+    background: #20b88a;
+    color: white;
+}
+
+.no-result {
+    text-align: center;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    display: none;
+}
+
+footer {
+    background: #075985;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media(max-width: 600px) {
+    .hero h1 {
+        font-size: 27px;
+    }
+    .search-box {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+    <h2>💙 MediConnect</h2>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="hospital.html">Hospitals</a>
+        <a href="doctordetail.html">Doctors</a>
+        <a href="appointmentdetail.html">Appointment</a>
+    </div>
+</nav>
+<div class="hero">
+    <h1>🏥 Find Your Nearby Hospital</h1>
+    <p>Choose your location and find the right doctor for your health.</p>
+</div>
+
+<div class="container">
+    <div class="search-box">
+
+        <h2>🔍 Hospital Search Assistant</h2>
+
+        <p style="text-align:center;color:#777">
+            Tell us where you need a hospital and which doctor you need.
+        </p>
+
+        <form id="searchForm">
+
+            <label>📍 Select Your Location</label>
+
+            <select id="location" required>
+                <option value="">Choose Your Area</option>
+                <option value="Dharampeth">Dharampeth</option>
+                <option value="Sitabuldi">Sitabuldi</option>
+                <option value="Manish Nagar">Manish Nagar</option>
+                <option value="Sadar">Sadar</option>
+                <option value="Wardha Road">Wardha Road</option>
+                <option value="Hingna">Hingna</option>
+                <option value="Nandanvan">Nandanvan</option>
+                <option value="Mahal">Mahal</option>
+            </select>
+
+            <label>👨‍⚕️ Which Doctor Do You Need?</label>
+
+            <select id="speciality" required>
+                <option value="">Choose Doctor Speciality</option>
+                <option value="General Physician">General Physician</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Dentist">Dentist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Orthopedic">Orthopedic</option>
+                <option value="Pediatrician">Pediatrician</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Gynecologist">Gynecologist</option>
+                <option value="ENT Specialist">ENT Specialist</option>
+                <option value="Ophthalmologist">Eye Specialist</option>
+            </select>
+
+            <label>🏥 Hospital Type</label>
+
+            <select id="type">
+                <option value="Any">Any Hospital</option>
+                <option value="Government">Government Hospital</option>
+                <option value="Private">Private Hospital</option>
+            </select>
+
+            <button type="submit" class="search-btn">
+                Find Hospitals 🔍
+            </button>
+
+        </form>
+    </div>
+    <div class="results">
+
+        <h2 style="color:#0878d1">
+            🏥 Suggested Hospitals
+        </h2>
+
+        <p id="resultCount"></p>
+
+        <div id="hospitalResults"></div>
+
+        <div class="no-result" id="noResult">
+            <h3>😔 No Matching Hospital Found</h3>
+            <p>Try selecting another location or speciality.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 MediConnect | Healthcare for Everyone 💙</p>
+</footer>
+
+
+<script>
+let hospitals = [
+
+{
+    name: "MediCare Health Centre",
+    location: "Dharampeth",
+    address: "Sample address, Dharampeth, Nagpur",
+    type: "Private",
+    doctors: ["General Physician", "Cardiologist", "Dentist"],
+    time: "9 AM - 8 PM"
+},
+
+{
+    name: "City Health Hospital",
+    location: "Sitabuldi",
+    address: "Sample address, Sitabuldi, Nagpur",
+    type: "Private",
+    doctors: ["General Physician", "Dermatologist", "Orthopedic"],
+    time: "10 AM - 7 PM"
+},
+
+{
+    name: "Community Medical Centre",
+    location: "Manish Nagar",
+    address: "Sample address, Manish Nagar, Nagpur",
+    type: "Government",
+    doctors: ["General Physician", "Pediatrician"],
+    time: "9 AM - 5 PM"
+},
+
+{
+    name: "Sunrise Hospital",
+    location: "Sadar",
+    address: "Sample address, Sadar, Nagpur",
+    type: "Private",
+    doctors: ["Cardiologist", "Neurologist", "ENT Specialist"],
+    time: "9 AM - 9 PM"
+},
+
+{
+    name: "Family Care Hospital",
+    location: "Wardha Road",
+    address: "Sample address, Wardha Road, Nagpur",
+    type: "Private",
+    doctors: ["Gynecologist", "Pediatrician", "Dentist"],
+    time: "10 AM - 8 PM"
+},
+
+{
+    name: "Rural Health Centre",
+    location: "Hingna",
+    address: "Sample address, Hingna, Nagpur",
+    type: "Government",
+    doctors: ["General Physician", "Orthopedic"],
+    time: "9 AM - 4 PM"
+},
+
+{
+    name: "Life Care Clinic",
+    location: "Nandanvan",
+    address: "Sample address, Nandanvan, Nagpur",
+    type: "Private",
+    doctors: ["Dentist", "Ophthalmologist", "Dermatologist"],
+    time: "9 AM - 7 PM"
+},
+
+{
+    name: "Health Plus Centre",
+    location: "Mahal",
+    address: "Sample address, Mahal, Nagpur",
+    type: "Private",
+    doctors: ["General Physician", "Cardiologist"],
+    time: "10 AM - 8 PM"
+}
+];
+</script>
+</body>
+</html>
